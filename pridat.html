@@ -27,12 +27,18 @@
     <div class="text-center">
       <h1>Přidat úkol</h1>
       <form method="POST" action="pridat.php">
-        <label for="zadani">Zadání</label>
-        <input type="date" name="datum_zad" /><br />
-        <label for="text">text</label>
+        <br />
+        <label for="zadani">Datum zadání</label>
+        <br />
+        <input type="date" name="datum_zad" />
+        <br />
+        <label for="text">Text zadání</label>
+        <br />
         <input type="text" name="text_zad" /><br />
         <label for="odevzdani">Odevzdání</label>
+        <br />
         <input type="date" name="datum_ode" /><br />
+        <br />
         <input type="submit" name="submit" />
       </form>
     </div>

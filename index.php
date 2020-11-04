@@ -15,46 +15,64 @@
         }
     </style>
 
+    <script type="text/javascript">
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '/' + mm + '/' + dd;
+        document.write(today);
+    </script>
+
     <title>Hello, world!</title>
-    <a href="pridat.html">Přidat úkol/test!</a>
 </head>
 
 <body class="box">
-    <h1 class="text-center text-dark">Nástěnka</h1>
-
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "nastenka";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Připojení selhalo: " . $conn->connect_error);
-    }
-    $sql = "SELECT datum_zad, text_zad, datum_ode FROM info";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-
-            echo "<div class='container'>";
-            echo "<div class='row justify-content-md-center'>";
-            echo "<div class='col col-lg-2'>" . $row["datum_zad"] . "</div>";
-            echo "<hr>";
-            echo "<div class='col-md-auto'>" . $row["text_zad"] . "</div>";
-            echo "<hr>";
-            echo "<div class='col col-lg-2'>" . $row["datum_ode"] . "</div>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-        }
-    } else {
-        echo "0 výsledků";
-    }
-    $conn->close();
-    ?>
+    <div class="text-center">
+        <h1>Nástěnka</h1>
+        <p>
+            Vítej v nástěnce! Zde budou úkoly pro 1ITB! Pokud máš pocit, že tu nějaký úkol chybí, tak ho můžeš klidně <a href="pridat.html">přidat!</a>
+        </p>
     </div>
+    <table class='table table-bordered'>
+        <thead class='thead-dark'>
+            <tr>
+                <th class='text-warning'>Datum zadání</th>
+                <th class='text-primary'>Text zadání</th>
+                <th class='text-danger'>Datum odevzdání</th>
+        </thead>
+        </tr>
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "nastenka";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Připojení selhalo: " . $conn->connect_error);
+        }
+        $sql = "SELECT datum_zad, text_zad, datum_ode FROM info";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tbody>";
+                echo "<tr>";
+                echo "<td>" . $row["datum_zad"] . "</td>";
+                echo "<td>" . $row["text_zad"] . "</td>" . "<br>";
+                echo "<td>" . $row["datum_ode"] . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "0 výsledků";
+        }
+        $conn->close();
+        ?>
+        </tbody>
+    </table>
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
