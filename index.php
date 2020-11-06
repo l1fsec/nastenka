@@ -6,13 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
-    <style>
-        .box {
-            padding: 60px;
-            margin: 60px 0;
-        }
-    </style>
-
+    <link rel="stylesheet" href="style.css">
     <title>Nástěnka</title>
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -41,16 +35,8 @@
                 Vítej v nástěnce! Zde budou úkoly pro 1ITB! Pokud máš pocit, že tu nějaký úkol chybí, tak ho můžeš klidně <a href="pridat.html">přidat!</a>
             </p>
             <p id="datum"></p>
-            <script>
-                var today = new Date();
-                var dd = String(today.getDate()).padStart(2, '0');
-                var mm = String(today.getMonth() + 1).padStart(2, '0');
-                var yyyy = today.getFullYear();
+            <script type="text/javascript" src="date.js"></script>
 
-                today = yyyy + '/' + mm + '/' + dd;
-
-                document.getElementById('datum').innerHTML = today;
-            </script>
         </div>
 
         <table class='table table-bordered'>
@@ -62,15 +48,8 @@
             </thead>
             </tr>
             <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "nastenka";
+            include('config.php');
 
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            if ($conn->connect_error) {
-                die("Připojení selhalo: " . $conn->connect_error);
-            }
             $sql = "SELECT datum_zad, text_zad, datum_ode FROM info";
             $result = $conn->query($sql);
 

@@ -1,6 +1,7 @@
 <?php
 header('Location: index.php');
-$mysqli = new mysqli("localhost", "root", "", "nastenka");
+include('config.php');
+$mysqli = new mysqli($host, $user, $password, $db_name);
 $datum_zad = $_POST["datum_zad"];
 $text_zad = $_POST["text_zad"];
 $datum_ode = $_POST["datum_ode"];

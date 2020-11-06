@@ -4,15 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
-    <style>
-        .box {
-            padding: 60px;
-            margin: 60px 0;
-        }
-    </style>
-
+    <link rel="stylesheet" href="style.css">
     <title>Nástěnka</title>
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -62,15 +56,7 @@
             </thead>
             </tr>
             <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "nastenka";
-
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            if ($conn->connect_error) {
-                die("Připojení selhalo: " . $conn->connect_error);
-            }
+            include('config.php');
             $sql = "SELECT datum_zad, text_zad, datum_ode, id FROM info";
             $result = $conn->query($sql);
 
@@ -79,9 +65,9 @@
                     echo "<tbody>";
                     echo "<tr>";
 
-                    echo "<td>" . $row["datum_zad"] . "</td>";
+                    echo "<td>" . "<form method='POST' action='delete.php'><button type='submit' class='btn btn-warning' name='idecko'value='" . $row['id'] . " '>Odstranit</button></form>" . $row["datum_zad"] . "</td>";
                     echo "<td>" . $row["text_zad"] . "</td>" . "<br> ";
-                    echo "<td>" . $row["datum_ode"] . "</td>" .  "<form method='POST' action='delete.php'><button type='submit' name='idecko'value='" . $row['id'] . " '>Odstranit</button></form>";
+                    echo "<td>" . $row["datum_ode"] . "</td>";
                     echo "<br>";;
                     echo "</tr>";
                 }

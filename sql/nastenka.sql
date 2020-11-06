@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Úte 03. lis 2020, 17:15
+-- Vytvořeno: Čtv 05. lis 2020, 10:55
 -- Verze serveru: 10.4.14-MariaDB
 -- Verze PHP: 7.4.11
 
@@ -34,18 +34,25 @@ CREATE TABLE `info` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Vypisuji data pro tabulku `info`
+-- Struktura tabulky `user`
 --
 
-INSERT INTO `info` (`datum_zad`, `text_zad`, `datum_ode`, `id`) VALUES
-('0000-00-00', '', '0000-00-00', 1),
-('0000-00-00', '', '0000-00-00', 2),
-('0000-00-00', '', '0000-00-00', 3),
-('0000-00-00', '', '0000-00-00', 4),
-('2020-11-08', 'tady nice', '0000-00-00', 5),
-('2020-11-08', 'tady nice', '2020-11-29', 6),
-('2020-12-05', 'vvxcvcx', '2020-11-07', 7);
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `jmeno` varchar(80) NOT NULL,
+  `heslo` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Vypisuji data pro tabulku `user`
+--
+
+INSERT INTO `user` (`id`, `jmeno`, `heslo`) VALUES
+(1, '', ''),
+(2, 'l1fsec', 'S@Nandreas2002');
 
 --
 -- Klíče pro exportované tabulky
@@ -58,6 +65,12 @@ ALTER TABLE `info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Klíče pro tabulku `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pro tabulky
 --
 
@@ -65,7 +78,13 @@ ALTER TABLE `info`
 -- AUTO_INCREMENT pro tabulku `info`
 --
 ALTER TABLE `info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT pro tabulku `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
