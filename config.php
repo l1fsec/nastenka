@@ -4,7 +4,9 @@ $user = "root";
 $password = '';
 $db_name = "nastenka";
 
-$conn = mysqli_connect($host, $user, $password, $db_name);
-if (mysqli_connect_errno()) {
-    die("Failed to connect with MySQL: " . mysqli_connect_error());
+$conn = new mysqli($host, $user, $password, $db_name);
+if ($conn -> connect_error) {
+    die ("<h1 style='text-align:center'>Nelze se připojit k databázi MySQL:</h1> " . $conn -> connect_error);
+    exit();
 }
+?>

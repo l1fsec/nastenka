@@ -32,7 +32,7 @@
         <div class="text-center">
             <h1>Nástěnka</h1>
             <p>
-                Vítej v nástěnce! Zde budou úkoly pro 1ITB! Pokud máš pocit, že tu nějaký úkol chybí, tak ho můžeš klidně <a href="pridat.html">přidat!</a>
+                Vítej v nástěnce! Zde budou úkoly pro 2ITB! Pokud máš pocit, že tu nějaký úkol chybí, tak ho můžeš klidně <a href="pridat.html">přidat!</a>
             </p>
             <p id="datum"></p>
             <script type="text/javascript" src="assets/date.js"></script>
@@ -63,7 +63,7 @@
                     echo "</tr>";
                 }
             } else {
-                echo "0 výsledků";
+                echo "<p>0 výsledků</p>";
             }
             $conn->close();
             ?>
