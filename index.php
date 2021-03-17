@@ -47,21 +47,23 @@
                     <th class='text-warning'>Datum zadání</th>
                     <th class='text-primary'>Text zadání</th>
                     <th class='text-danger'>Datum odevzdání</th>
+                    <th class='text-info'>Předmět</th>
             </thead>
             </tr>
             <?php
             include('config.php');
 
-            $sql = "SELECT datum_zad, text_zad, datum_ode FROM info";
+            $sql = "SELECT DATE_FORMAT(datum_zad, '%d.%m.%Y'), text_zad, DATE_FORMAT(datum_ode, '%d.%m.%Y'), predmet FROM info";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tbody>";
                     echo "<tr>";
-                    echo "<td>" . $row["datum_zad"] . "</td>";
+                    echo "<td>" . $row["DATE_FORMAT(datum_zad, '%d.%m.%Y')"] . "</td>";
                     echo "<td>" . $row["text_zad"] . "</td>" . "<br>";
-                    echo "<td>" . $row["datum_ode"] . "</td>";
+                    echo "<td>" . $row["DATE_FORMAT(datum_ode, '%d.%m.%Y')"] . "</td>";
+                    echo "<td>" . $row["predmet"] . "</td>";
                     echo "</tr>";
                 }
             } else {
