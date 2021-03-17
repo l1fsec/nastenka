@@ -15,30 +15,54 @@
     <link rel="stylesheet" href="assets/style.css" />
     <title>Přidat úkol</title>
   </head>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.php">Zpět</a>
-  </nav>
-  <div class="box">
+  
     <body>
-      <div class="text-center">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.php">Zpět</a>
+      </nav>
+
+      <div class="container text-center mt-5">
         <h1>Přidat úkol</h1>
         <form method="POST" action="pridat.php">
-          <br />
-          <label for="zadani">Datum zadání</label>
-          <br />
-          <input type="date" name="datum_zad" />
-          <br />
-          <label for="text">Text zadání</label>
-          <br />
-          <input type="text" name="text_zad" /><br />
-          <label for="odevzdani">Odevzdání</label>
-          <br />
-          <input type="date" name="datum_ode" /><br />
-          <br />
-          <input type="submit" name="submit" />
+          <div class="row">
+            <div class="col">
+              <label for="zadani">Datum zadání</label>
+              <input class="form-control" type="date" name="datum_zad" />
+            </div>
+            <div class="col">
+              <label for="odevzdani">Odevzdání</label>
+              <input class="form-control" type="date" name="datum_ode" />
+            </div>
+          </div>
+          
+          <div class="form-group mt-5">
+            <label for="text">Text zadání</label>
+            <textarea class="form-control" rows="3" name="text_zad"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="predmet">Předmět</label>
+            <select class="form-control" name="predmet">
+              <option value="ALG">ALG</option>
+              <option value="APS">APS</option>
+              <option value="CJL">CJL</option>
+              <option value="DAT">DAT</option>
+              <option value="DAS">DAS</option>
+              <option value="ELT">ELT</option>
+              <option value="FYZ">FYZ</option>
+              <option value="MAT">MAT</option>
+              <option value="OBN">OBN</option>
+              <option value="PVA">PVA</option>
+              <option value="TEV">TEV</option>
+              <option value="WEA">WEA</option>
+              <option value="ZPV">ZPV</option>
+            </select>
+          </div>
+
+          <input type="submit" class="btn btn-primary float-right" name="submit" />
         </form>
       </div>
-
+        
       <script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -55,5 +79,5 @@
         crossorigin="anonymous"
       ></script>
     </body>
-  </div>
+  
 </html>
