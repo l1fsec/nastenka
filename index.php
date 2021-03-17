@@ -65,7 +65,7 @@
                     echo "</tr>";
                 }
             } else {
-                echo "0 výsledků";
+                echo "<p style='text-align:center;'> 0 výsledků </p>";
             }
             $conn->close();
             ?>
