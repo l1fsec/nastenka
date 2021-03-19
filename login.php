@@ -15,7 +15,7 @@
     if ($count == 1) {
         header('Location: admin.php');
     } else {
-        echo "<h1 style='text-align:center;'> Login failed. Invalid username or password.</h1>";
+        echo "<h1 style='text-align:center;'> Přihlášení selhalo! Nesprávné heslo nebo jméno.</h1>";
     }
 
     function test_input($data) {

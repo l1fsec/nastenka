@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/style.css">
-    <title>Nástěnka</title>
+    <title>Nástěnka - Admin</title>
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Nástěnka</a>
@@ -44,11 +44,13 @@
                     <th class='text-warning'>Datum zadání</th>
                     <th class='text-primary'>Text zadání</th>
                     <th class='text-danger'>Datum odevzdání</th>
+                    <th class='text-info'>Předmět</th>
+                    <th class='text-secondary'>Pro skupinu:</th>
             </thead>
             </tr>
             <?php
             include('config.php');
-            $sql = "SELECT datum_zad, text_zad, datum_ode, id FROM info";
+            $sql = "SELECT datum_zad, text_zad, datum_ode, id, predmet, skupina FROM info";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -59,7 +61,9 @@
                     echo "<td>" . "<form method='POST' action='delete.php'><button type='submit' class='btn btn-warning' name='idecko'value='" . $row['id'] . " '>Odstranit</button></form>" . $row["datum_zad"] . "</td>";
                     echo "<td>" . $row["text_zad"] . "</td>" . "<br> ";
                     echo "<td>" . $row["datum_ode"] . "</td>";
-                    echo "<br>";;
+                    echo "<td>" . $row["predmet"] . "</td>";
+                    echo "<td>" . $row["skupina"] . "</td>";                   
+                    echo "<br>";
                     echo "</tr>";
                 }
             } else {
