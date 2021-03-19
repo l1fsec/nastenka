@@ -32,7 +32,7 @@
         <div class="text-center">
             <h1>Nástěnka</h1>
             <p>
-                Vítej v nástěnce! Zde budou úkoly pro 1ITB! Pokud máš pocit, že tu nějaký úkol chybí, tak ho můžeš klidně <a href="pridat.html">přidat!</a>
+                Vítej v nástěnce! Zde budou úkoly pro 2ITB! Pokud máš pocit, že tu nějaký úkol chybí, tak ho můžeš klidně <a href="pridat.html">přidat!</a>
             </p>
             <p id="datum"></p>
             <script type="text/javascript" src="assets/date.js"></script>
@@ -53,18 +53,35 @@
             <?php
             include('config.php');
 
-            $sql = "SELECT DATE_FORMAT(datum_zad, '%d.%m.%Y'), text_zad, DATE_FORMAT(datum_ode, '%d.%m.%Y'), predmet FROM info";
+            $sql = "SELECT datum_zad, text_zad, datum_ode, predmet, id FROM info";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tbody>";
-                    echo "<tr>";
-                    echo "<td>" . $row["DATE_FORMAT(datum_zad, '%d.%m.%Y')"] . "</td>";
-                    echo "<td>" . $row["text_zad"] . "</td>" . "<br>";
-                    echo "<td>" . $row["DATE_FORMAT(datum_ode, '%d.%m.%Y')"] . "</td>";
-                    echo "<td>" . $row["predmet"] . "</td>";
-                    echo "</tr>";
+                    $id = $row['id'];
+
+                    if (time() > strtotime($row["datum_ode"] . ' + 7 days')){
+                        $sql = "DELETE FROM info WHERE id = '$id'";
+                        $conn->query($sql);
+                    }
+
+                    else {
+                        echo "<tbody>";
+                        echo "<tr>";
+                        echo "<td>" . date("d.m.y", strtotime($row["datum_zad"])) . "</td>";
+                        echo "<td>" . $row["text_zad"] . "</td>" . "<br>";
+                        
+                        if (time() > strtotime($row["datum_ode"])){
+                            echo "<td class='text-danger' style='color:red'>" . date("d.m.y", strtotime($row["datum_ode"])) . "</td>";
+                        }
+                        else
+                        {
+                            echo "<td   >" . date("d.m.y", strtotime($row["datum_ode"])) . "</td>";
+                        }
+                        
+                        echo "<td>" . $row["predmet"] . "</td>";
+                        echo "</tr>";
+                        }
                 }
             } else {
                 echo "<p style='text-align:center;'> 0 výsledků </p>";
@@ -73,9 +90,6 @@
             ?>
             </tbody>
         </table>
-
-
-
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
