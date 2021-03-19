@@ -48,12 +48,13 @@
                     <th class='text-primary'>Text zadání</th>
                     <th class='text-danger'>Datum odevzdání</th>
                     <th class='text-info'>Předmět</th>
+                    <th class='text-secondary'>Pro skupinu</th>
             </thead>
             </tr>
             <?php
             include('config.php');
 
-            $sql = "SELECT datum_zad, text_zad, datum_ode, predmet, id FROM info";
+            $sql = "SELECT datum_zad, text_zad, datum_ode, predmet, id, skupina FROM info";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -80,6 +81,7 @@
                         }
                         
                         echo "<td>" . $row["predmet"] . "</td>";
+                        echo "<td>" . $row["skupina"] . "</td>";
                         echo "</tr>";
                         }
                 }
